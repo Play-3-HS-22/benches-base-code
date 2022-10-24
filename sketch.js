@@ -15,34 +15,10 @@ function preload() {
 function setup() {
   createCanvas(800, 800);
 
-  // transfrom the coordinates from LV95 to WGS84
-  for (let i = 0; i < benches.features.length; i++) {
-    let bench = benches.features[i]
-    let coordinates = bench.geometry.coordinates
-
-    // conversion using this script https://gist.github.com/loleg/06ad3db0cbbfadb200be7fc0b1451c35
-    let wgs84 = fromLV95(coordinates);
-
-    // console.log(wgs84)
-    bench.geometry.coordinates = wgs84
-  }
-
-
-  console.log(benches)
-
-  // save benches as json
-  // saveJSON(benches, 'SITZBANK_SITZBANK_WGS84.json')
-
+  console.log(benches);
 
 }
 
 function draw() {
   background(220);
-
-  for (let i = 0; i < benches.features.length; i++) {
-    let bench = benches.features[i]
-    let coordinates = bench.geometry.coordinates
-    let pos = projection(coordinates)
-    ellipse(pos[0], pos[1], 10, 10)
-  }
 }
